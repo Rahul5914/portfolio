@@ -1,102 +1,85 @@
 :root {
-    --primary: #00d2ff;
-    --bg: #0f172a;
-    --card-bg: #1e293b;
-    --text: #f8fafc;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-    scroll-behavior: smooth;
+    --bg: #050505;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --border: rgba(255, 255, 255, 0.08);
+    --accent: #3b82f6;
+    --text: #ffffff;
 }
 
 body {
     background-color: var(--bg);
     color: var(--text);
-}
-
-nav {
+    font-family: 'Plus Jakarta Sans', sans-serif;
     display: flex;
-    justify-content: space-between;
-    padding: 20px 10%;
-    background: rgba(15, 23, 42, 0.9);
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
+    justify-content: center;
+    padding: 40px 20px;
 }
 
-.logo { font-size: 24px; font-weight: bold; }
-.logo span { color: var(--primary); }
+.bento-container {
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
 
-nav ul { display: flex; list-style: none; }
-nav ul li { margin-left: 30px; }
-nav ul li a { color: white; text-decoration: none; transition: 0.3s; }
-nav ul li a:hover { color: var(--primary); }
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    transition: 0.3s ease;
+}
 
-.hero {
-    height: 100vh;
+.card:hover { border-color: var(--accent); transform: translateY(-5px); }
+
+/* Grid Layout */
+.profile { grid-column: span 3; }
+.stats { grid-column: span 1; display: flex; flex-direction: column; justify-content: space-around; text-align: center; }
+.education { grid-column: span 2; }
+.projects { grid-column: span 2; }
+.skills { grid-column: span 4; }
+
+h1 { font-size: 42px; margin-bottom: 10px; }
+h1 span { color: var(--accent); }
+p { color: #a1a1aa; line-height: 1.6; font-size: 0.95rem; }
+
+.badge { background: rgba(59, 130, 246, 0.1); color: var(--accent); padding: 5px 15px; border-radius: 50px; font-size: 12px; margin-bottom: 15px; display: inline-block; }
+
+/* Social Links Grid */
+.social-links-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.social-card {
+    background: rgba(255,255,255,0.05);
+    padding: 12px;
+    border-radius: 15px;
+    text-decoration: none;
+    color: white;
     display: flex;
     align-items: center;
-    padding: 0 10%;
-    background: radial-gradient(circle at bottom right, #1e293b, #0f172a);
+    gap: 10px;
+    font-size: 14px;
+    border: 1px solid transparent;
+    transition: 0.3s;
 }
 
-.hero h1 { font-size: 3.5rem; }
-.hero h1 span { color: var(--primary); }
-.hero h3 { font-size: 1.5rem; color: #94a3b8; margin: 10px 0; }
-.hero p { max-width: 600px; margin-bottom: 30px; }
+.github:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+.linkedin:hover { border-color: #0077b5; color: #0077b5; }
+.leetcode:hover { border-color: #ffa116; color: #ffa116; }
+.codeforces:hover { border-color: #318ce7; color: #318ce7; }
 
-.btn {
-    padding: 12px 25px;
-    background: var(--primary);
-    color: #0f172a;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    margin-right: 15px;
-}
+.value { font-size: 32px; font-weight: 800; color: var(--accent); display: block; }
+.label { font-size: 12px; color: #71717a; text-transform: uppercase; }
 
-.btn.outline {
-    background: transparent;
-    border: 1px solid var(--primary);
-    color: var(--primary);
-}
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
+.tags span { background: rgba(255, 255, 255, 0.05); padding: 6px 14px; border-radius: 10px; font-size: 13px; }
 
-.section { padding: 80px 10%; }
-.title { text-align: center; margin-bottom: 50px; font-size: 2rem; border-bottom: 2px solid var(--primary); display: inline-block; width: auto; }
-
-.skills-container, .project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-}
-
-.skill-card, .project-card {
-    background: var(--card-bg);
-    padding: 30px;
-    border-radius: 12px;
-    border: 1px solid #334155;
-    transition: 0.4s;
-}
-
-.skill-card:hover, .project-card:hover {
-    border-color: var(--primary);
-    transform: translateY(-10px);
-}
-
-.tech-stack {
-    display: block;
-    margin-top: 15px;
-    font-size: 0.8rem;
-    color: var(--primary);
-    font-weight: bold;
-}
-
-footer {
-    text-align: center;
-    padding: 50px;
-    background: #020617;
+@media (max-width: 850px) {
+    .bento-container { grid-template-columns: 1fr; }
+    .profile, .stats, .education, .projects, .skills { grid-column: span 1; }
 }
